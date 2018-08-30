@@ -1,0 +1,10 @@
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\bin\Debug\ProjetoAgenda.exe.config
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\bin\Debug\ProjetoAgenda.exe
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\bin\Debug\ProjetoAgenda.pdb
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.csprojAssemblyReference.cache
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.Properties.Resources.resources
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.csproj.GenerateResource.cache
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.csproj.CoreCompileInputs.cache
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.exe
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.pdb
+C:\Users\Kadu\source\repos\ProjetoAgenda\ProjetoAgenda\obj\Debug\ProjetoAgenda.Form1.resources
