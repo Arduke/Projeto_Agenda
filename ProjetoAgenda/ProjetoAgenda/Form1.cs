@@ -17,6 +17,7 @@ namespace ProjetoAgenda
         private Button gravar;
         private Button excluir;
         private Button Pesquisar;
+        private Button Alterar;
         private Button listar;
         private Label email;
         private Label nome;
@@ -28,9 +29,6 @@ namespace ProjetoAgenda
 
         public void iniciarComponentes()
         {
-            #region
-
-            #endregion
             #region botões
             listar = new Button();
             listar.Parent = this;
@@ -71,6 +69,14 @@ namespace ProjetoAgenda
             Pesquisar.Left = 260;
             Pesquisar.Text = "Pesquisar";
             Pesquisar.Click += new EventHandler(clicouPesquisar);
+
+            Alterar = new Button();
+            Alterar.Parent = this;
+            Alterar.Width = 80;
+            Alterar.Top = 280;
+            Alterar.Left = 90;
+            Alterar.Text = "Alterar";
+            Alterar.Click += new EventHandler(clicouAlterar);
             #endregion
 
             #region Label
@@ -128,11 +134,23 @@ namespace ProjetoAgenda
 
             #endregion
 
-
-
         }
 
-
+        private void clicouAlterar(object sender, EventArgs e)
+        {
+            try
+            {
+                var c = new Contato(Email.Text, Nome.Text, Telefone.Text);
+                if (objuso.alterar(c))
+                    MessageBox.Show("Alterado com sucesso");
+                else
+                    MessageBox.Show("Contato não encontrado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         public Form1()
         {
@@ -152,35 +170,51 @@ namespace ProjetoAgenda
         }
         public void clicouGravar (object sender, EventArgs e)
         {
-            objuso.adicionar(new Contato(Email.Text, Nome.Text, Telefone.Text));
-            MessageBox.Show("Cadastro com sucesso");
+            try
+            {
+                var c = new Contato(Email.Text, Nome.Text, Telefone.Text);
+                if (objuso.adicionar(c))
+                    MessageBox.Show("Cadastro com sucesso");
+                else
+                    MessageBox.Show("Contato já inserido");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void clicouExcluir (object sender, EventArgs e)
         {
-            objuso.remover(new Contato(Email.Text));
-            MessageBox.Show("Excluido com sucesso");
+            try
+            {
+                var c = new Contato(Email.Text, Nome.Text, Telefone.Text);
+                if (objuso.remover(c))
+                    MessageBox.Show("Excluido com sucesso");
+                else
+                    MessageBox.Show("Contato não encontrado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         public void clicouPesquisar(object sender, EventArgs e)
         {
-
-            Contato pesquisado = objuso.Pesquisa(new Contato(Email.Text));
-            Email.Text = pesquisado.Email;
-            Nome.Text = pesquisado.Nome;
-            Telefone.Text = pesquisado.Telefone;
-
+            var c = new Contato(Email.Text, Nome.Text, Telefone.Text);
+            var pesquisado = objuso.Pesquisa(c);
+            if (pesquisado != null)
+            {
+                Email.Text = pesquisado.Email;
+                Nome.Text = pesquisado.Nome;
+                Telefone.Text = pesquisado.Telefone;
+            }
+            else
+                MessageBox.Show("Contato não encontrado");
         }
         public void clicouListar(object sender, EventArgs e)
         {
-            string aux = "";
-
-            foreach (Contato c in objuso.Lista)
-            {
-                aux += "\n" + c.dados();
-            }
-
-            display.Text = aux;
-
+            display.Text = string.Join("\n", objuso.Lista.Select(x => x.dados()));
         }
     }
 }
