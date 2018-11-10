@@ -28,32 +28,46 @@ namespace ProjetoAgenda
         #endregion
 
         #region Métodos
-        public void adicionar(Contato c)
+        public Contato Pesquisa(Contato c)
         {
-            this.lista.Add(c);
+            return lista.FirstOrDefault(x => x.Equals(c));
+        }
+
+        public bool adicionar(Contato c)
+        {
+            if (Pesquisa(c) == null)
+            {
+                lista.Add(c);
+                return true;
+            }
+            return false;
+        }
+
+        public bool alterar(Contato c)
+        {
+            var x = Pesquisa(c);
+            if (x != null)
+            {
+                if (!string.IsNullOrEmpty(c.Nome) && c.Nome != x.Nome)
+                    x.Nome = c.Nome;
+                if (!string.IsNullOrEmpty(c.Email) && c.Email != x.Email)
+                    x.Email = c.Email;
+                if (!string.IsNullOrEmpty(c.Telefone) && c.Telefone != x.Telefone)
+                    x.Telefone = c.Telefone;
+                return true;
+            }
+            return false;
         }
 
         public bool remover(Contato c)
         {
-            return this.lista.Remove(c);
-        }
-
-        public Contato Pesquisa(Contato c)
-        {
-            Contato aux = new Contato();
-
-            foreach(Contato ca in Lista)
+            if (Pesquisa(c) != null)
             {
-                if (ca.Equals(c))
-                {
-                    aux = ca; 
-                }
-
+                lista.Remove(lista.First(x => x.Equals(c)));
+                return true;
             }
-            return aux;
-           
+            return false;
         }
-
         #endregion
     }
 }
